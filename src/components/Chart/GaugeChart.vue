@@ -1,91 +1,132 @@
 <template>
   <div>
-    <!-- Titre du composant -->
-    <h2 class="gauge-title">Performance Ma</h2>
-    <!-- Titre au-dessus de la jauge -->
+    <!-- Title of the component -->
+    <h2 class="gauge-title">{{ title }}</h2>
 
-    <!-- Conteneur pour la jauge -->
-    <div ref="gaugeChart" style="height: 400px"></div>
+    <!-- Container for the gauge -->
+    <div ref="gaugeChart" style="height: 25em;"></div>
   </div>
 </template>
 
-<script setup>
+<script>
 import * as echarts from "echarts";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 
-// Référence de l'élément DOM pour la jauge
-const gaugeChart = ref(null);
+export default {
+  props: {
+    title: {
+      type: String, // Title of the gauge
+      default: "Default Title",
+    },
+    value: {
+      type: Number, // Current value to display
+      required: true,
+    },
+    unite: {
+      type: String,
+      default: "%",
+    }
+  },
+  setup(props) {
+    // Reference to the gauge container
+    const gaugeChart = ref(null);
 
-onMounted(() => {
-  // Initialisation du graphique de type 'gauge'
-  const myChart = echarts.init(gaugeChart.value);
+    onMounted(() => {
+      // Initialize the chart
+      const myChart = echarts.init(gaugeChart.value);
 
-  // Configuration du graphique (type jauge)
-  const option = {
-    series: [
-      {
-        type: "gauge",
-        progress: {
-          show: true,
-          width: 18,
-        },
-        axisLine: {
-          lineStyle: {
-            width: 18,
-            color: [
-              [0.2, "#ff0000"],
-              [0.8, "#ff9900"],
-              [1, "#00cc00"],
+      // Configuration for the gauge
+      const option = {
+        series: [
+          {
+            type: 'gauge',
+            max: 100,
+            startAngle: 180,
+            endAngle: 0,
+            axisLine: {
+              lineStyle: {
+                width: 10,
+                color: [
+                  [0.3, '#fd666d'],
+                  [0.7, '#37a2da'],
+                  [1, '#67e0e3  ']
+                ]
+              }
+            },
+            pointer: {
+              itemStyle: {
+                color: 'auto'
+              }
+            },
+            axisTick: {
+              distance: -10,
+              length: 8,
+              lineStyle: {
+                color: '#fff',
+                width: 2
+              }
+            },
+            splitLine: {
+              distance: -10,
+              length: 15,
+              lineStyle: {
+                color: '#fff',
+                width: 4
+              }
+            },
+            axisLabel: {
+              color: 'inherit',
+              distance: 10,
+              fontSize: 20
+            },
+            detail: {
+              valueAnimation: true,
+              formatter: "{value}" + props.unite, // Display value in the detail area
+            },
+            data: [
+              {
+                value: props.value, // Bind the initial value to the prop
+                name: props.title,
+              },
             ],
           },
-        },
-        axisLabel: {
-          distance: 25,
-          fontSize: 20,
-        },
-        axisTick: {
-          length: 12,
-          lineStyle: {
-            color: "auto",
-          },
-        },
-        splitLine: {
-          length: 30,
-          width: 5,
-          lineStyle: {
-            color: "auto",
-          },
-        },
-        pointer: {
-          width: 5,
-          length: "70%",
-        },
-        title: {
-          offsetCenter: [0, "50%"],
-          fontSize: 18,
-        },
-        detail: {
-          valueAnimation: true,
-          formatter: "{value}%",
-          fontSize: 30,
-          color: "auto",
-        },
-        data: [{ value: 60, name: "WATTS" }],
-      },
-    ],
-  };
+        ],
+      };
 
-  // Appliquer la configuration de la jauge
-  myChart.setOption(option);
-});
+      // Set the initial option
+      myChart.setOption(option);
+
+      // Watch for changes in the value prop and update the chart
+      watch(
+        () => props.value,
+        (newValue) => {
+          myChart.setOption({
+            series: [
+              {
+                data: [
+                  {
+                    value: newValue, // Update the gauge value
+                  },
+                ],
+              },
+            ],
+          });
+        }
+      );
+    });
+
+    return {
+      gaugeChart,
+    };
+  },
+};
 </script>
 
 <style scoped>
-/* Style optionnel pour personnaliser la jauge */
 .gauge-title {
-  text-align: center; /* Centrer le titre */
+  text-align: center;
   font-size: 24px;
-  color: #333; /* Choisis une couleur qui te convient */
-  margin-bottom: 10px; /* Espacement entre le titre et la jauge */
+  color: #333;
+  margin-bottom: 10px;
 }
 </style>
