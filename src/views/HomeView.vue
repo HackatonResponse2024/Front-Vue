@@ -1,15 +1,10 @@
 <script setup lang="ts">
-import TheWelcome from "../components/TheWelcome.vue";
-import TheHeader from "../components/TheHeader.vue";
-import TheMap from "../components/TheMap.vue";
-import MyChartComponent from "../components/Chart/MyChartComponent.vue";
-import GaugeChart from "../components/Chart/GaugeChart.vue"; // Assure-toi que le chemin est correct
+import TheMap from "../components/Map/TheMap.vue";  
+import Rapport from "../components/Rapport/Rapport.vue";
 </script>
 
 <template>
   <main>
-    <TheHeader />
-    <TheWelcome />
     <div class="content-container">
       <!-- Section pour la carte (75% de largeur) -->
       <div class="map-container">
@@ -18,20 +13,7 @@ import GaugeChart from "../components/Chart/GaugeChart.vue"; // Assure-toi que l
 
       <!-- Section pour les graphiques (25% de largeur) -->
       <div class="charts-container">
-        <!-- Conteneur pour la jauge -->
-        <div class="chart-container">
-          <GaugeChart />
-        </div>
-
-        <!-- Conteneur pour le graphique TheChart -->
-        <div class="chart-container">
-          <TheChart />
-        </div>
-
-        <!-- Conteneur pour le graphique MyChartComponent -->
-        <div class="chart-container">
-          <MyChartComponent />
-        </div>
+        <Rapport />
       </div>
     </div>
   </main>
