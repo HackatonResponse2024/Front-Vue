@@ -1,7 +1,7 @@
 <template>
-<div class="map-wrap">
-    <div class="map" ref="mapContainer"></div>
-</div>
+    <div class="map-wrap">
+        <div class="map" ref="mapContainer"></div>
+    </div>
 </template>
 
 <script setup>
