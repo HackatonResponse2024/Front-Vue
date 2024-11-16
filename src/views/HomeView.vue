@@ -5,8 +5,7 @@
 
 <template>
   <main>
-
-        <!-- Section pour la carte (75% de largeur) -->
+      <!-- Section pour la carte (75% de largeur) -->
       <div class="card">
         <TheMap />
       </div>
