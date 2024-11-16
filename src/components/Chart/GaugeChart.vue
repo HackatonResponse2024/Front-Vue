@@ -22,8 +22,8 @@ export default {
       type: Number, // Current value to display
       required: true,
     },
-    unite:{
-      type: String, 
+    unite: {
+      type: String,
       default: "%",
     }
   },
@@ -39,17 +39,49 @@ export default {
       const option = {
         series: [
           {
-            name: "gauge",
-            type: "gauge",
+            type: 'gauge',
+            max: 100,
             startAngle: 180,
             endAngle: 0,
-            max: 100, // Maximum value of the gauge
-            progress: {
-              show: true,
+            axisLine: {
+              lineStyle: {
+                width: 10,
+                color: [
+                  [0.3, '#fd666d'],
+                  [0.7, '#37a2da'],
+                  [1, '#67e0e3  ']
+                ]
+              }
+            },
+            pointer: {
+              itemStyle: {
+                color: 'auto'
+              }
+            },
+            axisTick: {
+              distance: -10,
+              length: 8,
+              lineStyle: {
+                color: '#fff',
+                width: 2
+              }
+            },
+            splitLine: {
+              distance: -10,
+              length: 15,
+              lineStyle: {
+                color: '#fff',
+                width: 4
+              }
+            },
+            axisLabel: {
+              color: 'inherit',
+              distance: 10,
+              fontSize: 20
             },
             detail: {
               valueAnimation: true,
-              formatter: "{value}" +  props.unite, // Display value in the detail area
+              formatter: "{value}" + props.unite, // Display value in the detail area
             },
             data: [
               {

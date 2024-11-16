@@ -5,14 +5,14 @@
     
       <div class="row">
         <div class="col card">
-          <GaugeChart :title="'Auto Prodution'" 
+          <GaugeChart :title="'Auto Production'" 
           :value="95" />
         </div>
         <div class="col card">
           <GaugeChart :title="'Auto Consomation'" :value="55" />
         </div>
         <div class="col card">
-          <GaugeChart :title="'Puissance MAx'" :value="996" :unite="' Wh'"/>
+          <GaugeChart :title="'Puissance MAx'" :value="996" :unite="' W'"/>
         </div>
 
       </div>
