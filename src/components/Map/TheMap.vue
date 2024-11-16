@@ -15,7 +15,7 @@ const map = shallowRef(null);
 onMounted(() => {
 config.apiKey = 'I13a36UYaY7TpmsPixKu';
 
-const initialState = { lng: 139.753, lat: 35.6844, zoom: 14 };
+const initialState = { lng: 5.039249, lat: 47.321758, zoom: 12 };
 
 map.value = markRaw(new Map({
     container: mapContainer.value,
@@ -25,7 +25,7 @@ map.value = markRaw(new Map({
 }));
 
 new Marker({color: "#FF0000"})
-.setLngLat([139.7525,35.6846])
+.setLngLat([5.039249,47.321758])
 .addTo(map.value);
 
 }),
