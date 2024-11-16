@@ -2,33 +2,74 @@
   <div>
     <h1>Rapport</h1>
     <!-- Conteneur pour la jauge -->
-    
-      <div class="row">
-        <div class="col card">
-          <GaugeChart :title="'Auto Production'" 
-          :value="95" />
-        </div>
-        <div class="col card">
-          <GaugeChart :title="'Auto Consomation'" :value="55" />
-        </div>
-        <div class="col card">
-          <GaugeChart :title="'Puissance MAx'" :value="996" :unite="' W'"/>
-        </div>
 
+    <div class="row">
+      <div class="col card">
+        <GaugeChart :title="'Auto Production'" :value="95" />
+      </div>
+      <div class="col card">
+        <GaugeChart :title="'Auto Consomation'" :value="55" />
+      </div>
+      <div class="col card">
+        <GaugeChart :title="'Puissance MAx'" :value="996" :unite="' W'" />
       </div>
 
-  
+    </div>
+
+
     <div class="col card">
       <!-- Conteneur pour le graphique MyChartComponent -->
-        <MyChartComponent />
-    
+      <MyChartComponent 
+    :months="[
+      'Janvier',
+      'Février',
+      'Mars',
+      'Avril',
+      'Mai',
+      'Juin',
+      'Juillet',
+      'Août',
+      'Septembre',
+      'Octobre',
+      'Novembre',
+      'Décembre'
+    ]"
+    :valuable-production="[
+      755.1188200181846,
+      678.8073622014945,
+      740.3015695735102,
+      703.8292022016147,
+      745.5479493902054,
+      723.564353855502,
+      733.0295619511626,
+      730.7586628990291,
+      719.8286867037068,
+      737.9228678129307,
+      722.1933931049585,
+      761.5334555828168
+    ]"
+    :surplus="[
+      743439891.0841013,
+      664766761.2783263,
+      747793624.8342831,
+      732839852.8470674,
+      739203438.8402358,
+      712424617.1273435,
+      727493549.6821536,
+      714270909.3785863,
+      726916114.1793481,
+      744504485.1621321,
+      708878294.1952077,
+      734794154.9563582
+    ]"
+  />
     </div>
   </div>
 </template>
 
 <script setup>
 import GaugeChart from '../Chart/GaugeChart.vue';
-import MyChartComponent from '../Chart/MyChartComponent.vue';
+import MyChartComponent from '../Chart/BarChart.vue';
 </script>
 
 <style>
