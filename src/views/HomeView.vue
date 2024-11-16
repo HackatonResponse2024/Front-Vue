@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import TheMap from "../components/Map/TheMap.vue";  
-import Rapport from "../components/Rapport/Rapport.vue";
+  import TheMap from "../components/Map/TheMap.vue";  
+  import Rapport from "../components/Rapport/Rapport.vue";
 </script>
 
 <template>
   <main>
-      <!-- Section pour la carte (75% de largeur) -->
+
+        <!-- Section pour la carte (75% de largeur) -->
       <div class="card">
         <TheMap />
       </div>
