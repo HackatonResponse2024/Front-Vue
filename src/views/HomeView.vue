@@ -2,7 +2,6 @@
 import TheWelcome from "../components/TheWelcome.vue";
 import TheHeader from "../components/TheHeader.vue";
 import TheMap from "../components/TheMap.vue";
-import TheChart from "../components/TheChart.vue";
 import MyChartComponent from "../components/Chart/MyChartComponent.vue";
 import GaugeChart from "../components/Chart/GaugeChart.vue"; // Assure-toi que le chemin est correct
 </script>
@@ -19,9 +18,20 @@ import GaugeChart from "../components/Chart/GaugeChart.vue"; // Assure-toi que l
 
       <!-- Section pour les graphiques (25% de largeur) -->
       <div class="charts-container">
-        <TheChart />
-        <MyChartComponent />
-        <GaugeChart />
+        <!-- Conteneur pour la jauge -->
+        <div class="chart-container">
+          <GaugeChart />
+        </div>
+
+        <!-- Conteneur pour le graphique TheChart -->
+        <div class="chart-container">
+          <TheChart />
+        </div>
+
+        <!-- Conteneur pour le graphique MyChartComponent -->
+        <div class="chart-container">
+          <MyChartComponent />
+        </div>
       </div>
     </div>
   </main>
@@ -46,6 +56,9 @@ main {
 /* Conteneur pour la carte */
 .map-container {
   width: 75%; /* Carte occupe 75% de la largeur */
+  border: 2px solid #ccc; /* Bordure grise */
+  border-radius: 12px; /* Bords arrondis */
+  padding: 10px; /* Espacement interne */
 }
 
 /* Conteneur pour les graphiques */
@@ -54,5 +67,15 @@ main {
   display: flex;
   flex-direction: column; /* Alignement vertical des graphiques */
   gap: 20px; /* Espacement entre les graphiques */
+  border: 2px solid #ccc; /* Bordure grise */
+  border-radius: 12px; /* Bords arrondis */
+  padding: 10px; /* Espacement interne */
+}
+
+/* Conteneur pour chaque graphique individuel */
+.chart-container {
+  border: 2px solid #ccc; /* Bordure grise pour chaque graphique */
+  border-radius: 8px; /* Bords arrondis */
+  padding: 10px; /* Espacement interne */
 }
 </style>
