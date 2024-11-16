@@ -5,17 +5,21 @@
     
       <div class="row">
         <div class="col card">
-          <GaugeChart />
+          <GaugeChart :title="'Auto Prodution'" 
+          :value="95" />
         </div>
         <div class="col card">
-          <GaugeChart />
+          <GaugeChart :title="'Auto Consomation'" :value="55" />
         </div>
+        <div class="col card">
+          <GaugeChart :title="'Puissance MAx'" :value="996" :unite="' Wh'"/>
+        </div>
+
       </div>
 
   
     <div class="col card">
       <!-- Conteneur pour le graphique MyChartComponent -->
-      
         <MyChartComponent />
     
     </div>
