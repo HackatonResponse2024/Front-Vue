@@ -5,17 +5,16 @@ import Rapport from "../components/Rapport/Rapport.vue";
 
 <template>
   <main>
-    <div class="content-container">
       <!-- Section pour la carte (75% de largeur) -->
-      <div class="map-container">
+      <div class="card">
         <TheMap />
       </div>
 
       <!-- Section pour les graphiques (25% de largeur) -->
-      <div class="charts-container">
+      <div class="card">
         <Rapport />
       </div>
-    </div>
+
   </main>
 </template>
 
@@ -37,7 +36,6 @@ main {
 
 /* Conteneur pour la carte */
 .map-container {
-  width: 75%; /* Carte occupe 75% de la largeur */
   border: 2px solid #ccc; /* Bordure grise */
   border-radius: 12px; /* Bords arrondis */
   padding: 10px; /* Espacement interne */
@@ -45,7 +43,6 @@ main {
 
 /* Conteneur pour les graphiques */
 .charts-container {
-  width: 25%; /* Graphiques occupent 25% de la largeur */
   display: flex;
   flex-direction: column; /* Alignement vertical des graphiques */
   gap: 20px; /* Espacement entre les graphiques */
