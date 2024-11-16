@@ -21,7 +21,7 @@ export const useSiteStore = defineStore('site', {
         async fetchSites() {
             this.loading = true
             try {
-                const response = await axios.get<Site[]>('https://localhost:7286/api/Sites')
+                const response = await axios.get<Site[]>('https://response-ejf9djema4gaanex.francecentral-01.azurewebsites.net/api/Sites')
                 this.sites = response.data
             } catch (err) {
                 this.error = "Erreur lors de la récupération des sites"
