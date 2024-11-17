@@ -6,11 +6,14 @@
 
 <script setup>
 import { Map, MapStyle, Marker, Popup, config } from '@maptiler/sdk';
-import { shallowRef, onMounted, onUnmounted, markRaw } from 'vue';
+import { shallowRef, onMounted, onUnmounted, markRaw, ref } from 'vue';
+import { useConsumationStore } from '@/stores/consumationStore';
 import '@maptiler/sdk/dist/maptiler-sdk.css';
 
 const mapContainer = shallowRef(null);
 const map = shallowRef(null);
+const clickedCoordinates = ref(null);
+const consumationStore = useConsumationStore();
 
 onMounted(async () => {
     config.apiKey = 'I13a36UYaY7TpmsPixKu';
@@ -22,7 +25,10 @@ onMounted(async () => {
             style: MapStyle.STREETS,
             center: [initialState.lng, initialState.lat],
             zoom: initialState.zoom,
-            scaleControl: true
+            scaleControl: true,
+            preserveDrawingBuffer: true,
+            antialias: true,
+            premultipliedAlpha: false
         })
     );
 
@@ -94,13 +100,33 @@ onMounted(async () => {
             properties: {}
         };
     }  
+    
     // Add a circle to the map on click
-    map.value.on('click', (e) => {
+    map.value.on('click', async (e) => {
+        clickedCoordinates.value = {
+            lat: e.lngLat.lat,
+            lng: e.lngLat.lng
+        };
+
+        //show report store
+        console.log(consumationStore.reports);
+
+        try {
+            await consumationStore.fetchConsumationReport({
+                lng: e.lngLat.lng,
+                lat: e.lngLat.lat
+            });
+            console.log('Nombre de rapports:', consumationStore.reports.length);
+        } catch (error) {
+            console.error('Erreur lors de la récupération du rapport:', error);
+        }
+
         const circleFeature = createCircleFeature(
             [e.lngLat.lng, e.lngLat.lat],
-            1  // 1km radius
+            1
         );
     
+        
         // Update the source with only the new circle
         const source = map.value.getSource('circle');
         if (source) {
@@ -120,7 +146,7 @@ onUnmounted(() => {
 .map-wrap {
     position: relative;
     width: 100%;
-    height: calc(100vh - 77px);
+    height: 60vh;
 }
 
 .map {
