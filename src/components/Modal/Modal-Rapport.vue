@@ -45,7 +45,7 @@
           </li>
           <li>
             <strong>Puissance Max</strong>: Affiche la puissance maximale
-            atteinte en W.
+            atteinte en kWc.
           </li>
         </ul>
 
