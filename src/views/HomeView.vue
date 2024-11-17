@@ -5,10 +5,10 @@ import Rapport from "../components/Rapport/Rapport.vue";
 
 <template>
   <main>
-    <!-- Section pour la carte (75% de largeur) -->
-    <div class="card">
-      <TheMap />
-    </div>
+      <!-- Section pour la carte (75% de largeur) -->
+      <div class="card">
+        <TheMap />
+      </div>
 
     <!-- Section pour les graphiques (25% de largeur) -->
     <div class="card">
