@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="h1">Rapport</h1>
+    <h1 class="h1">Rapport de faisabilité de projet d'autoconsommation n°{{ rapportIndex }}</h1>
 
     <div class="row">
       <div class="col card" @click="openModal">
@@ -16,7 +16,7 @@
         />
       </div>
       <div class="col card" @click="openModal">
-        <GaugeChart :title="'Puissance Max'" :value="1238" :unite="' W'" />
+        <GaugeChart :title="'Puissance Max'" :value="1238" :unite="' kWc'" />
       </div>
     </div>
 
@@ -55,7 +55,6 @@ const props = defineProps({
     }),
   },
   rapportIndex: {
-    // Nouvelle prop pour l'index
     type: Number,
     required: true,
   },
@@ -80,7 +79,7 @@ const charts = [
   },
   {
     component: GaugeChart,
-    props: { title: "Puissance Max", value: 1238, unite: " W", maxValue: 1200 },
+    props: { title: "Puissance Max", value: 1238, unite: " kWc", maxValue: 1200 },
   },
   {
     component: BarChart,
