@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import TheMap from "../components/Map/TheMap.vue";
 import Rapport from "../components/Rapport/Rapport.vue";
-import { useConsumationStore } from '@/stores/consumationStore';
-import { storeToRefs } from 'pinia';
+import { useConsumationStore } from "@/stores/consumationStore";
+import { storeToRefs } from "pinia";
 
 const consumationStore = useConsumationStore();
 const { sortedReports } = storeToRefs(consumationStore);
@@ -19,8 +19,8 @@ const { sortedReports } = storeToRefs(consumationStore);
         Cliquez sur la carte pour générer des rapports
       </div>
       <div v-else>
-        <Rapport 
-          v-for="(report, index) in sortedReports" 
+        <Rapport
+          v-for="(report, index) in sortedReports"
           :key="index"
           :rapport="report"
         />

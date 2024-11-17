@@ -54,6 +54,11 @@ const props = defineProps({
       surplus: [],
     }),
   },
+  rapportIndex: {
+    // Nouvelle prop pour l'index
+    type: Number,
+    required: true,
+  },
 });
 
 const isModalVisible = ref(false);
@@ -123,5 +128,29 @@ const openModal = () => {
 .card:hover {
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
   transition-duration: 10ms;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+  .col {
+    flex: none;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .card {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .h1 {
+    font-size: 1.5rem; /* Ajuste de taille du titre sur les petits écrans */
+    text-align: center;
+    margin-left: 0;
+  }
 }
 </style>
