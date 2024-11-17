@@ -18,13 +18,14 @@ const { sortedReports } = storeToRefs(consumationStore);
       <div v-if="sortedReports.length === 0">
         Cliquez sur la carte pour générer des rapports
       </div>
-      <div v-else>
-        <Rapport
-          v-for="(report, index) in sortedReports"
-          :key="index"
-          :rapport="report"
-          :rapport-index="index + 1"
-        />
+      <div v-else class="reports-container">
+        <template v-for="(report, index) in sortedReports" :key="index">
+          <Rapport
+            :rapport="report"
+            :rapport-index="index + 1"
+          />
+          <hr v-if="index < sortedReports.length - 1" />
+        </template>
       </div>
     </div>
   </main>
@@ -68,5 +69,9 @@ main {
   border: 2px solid #ccc; /* Bordure grise pour chaque graphique */
   border-radius: 8px; /* Bords arrondis */
   padding: 10px; /* Espacement interne */
+}
+
+hr {
+  border: 2px solid #ccc;
 }
 </style>
