@@ -18,9 +18,9 @@
     </div>
 
 
-    <div class="col card">
+    <div class="col card" @click="openModal">
       <!-- Conteneur pour le graphique MyChartComponent -->
-      <MyChartComponent 
+      <BarChart 
     :months="[
       'Janvier',
       'Février',
@@ -66,10 +66,7 @@
   />
     </div>
 
-    <div class="col card" @click="openModal">
-      <!-- Conteneur pour le graphique MyChartComponent -->
-      <MyChartComponent />
-    </div>
+
 
     <!-- Utilisation du ModalRapport et passage des graphiques -->
     <ModalRapport
@@ -83,7 +80,7 @@
 <script setup>
 import { ref } from "vue";
 import GaugeChart from "../Chart/GaugeChart.vue";
-import MyChartComponent from "../Chart/MyChartComponent.vue";
+import BarChart from "../Chart/BarChart.vue";
 import ModalRapport from "../Modal/Modal-Rapport.vue"; // Importer le modal
 
 // Etat du modal
@@ -97,7 +94,7 @@ const charts = [
     component: GaugeChart,
     props: { title: "Puissance Max", value: 1200, unite: " W", maxValue: 1200 }, // Ajout de maxValue à 1200
   },
-  { component: MyChartComponent, props: {} },
+  { component: BarChart, props: {} },
 ];
 
 // Fonction pour ouvrir le modal
