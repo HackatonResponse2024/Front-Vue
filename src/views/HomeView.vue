@@ -23,6 +23,7 @@ const { sortedReports } = storeToRefs(consumationStore);
           v-for="(report, index) in sortedReports"
           :key="index"
           :rapport="report"
+          :rapport-index="index + 1"
         />
       </div>
     </div>
