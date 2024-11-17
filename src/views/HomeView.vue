@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import TheMap from "../components/Map/TheMap.vue";  
-  import Rapport from "../components/Rapport/Rapport.vue";
+import TheMap from "../components/Map/TheMap.vue";
+import Rapport from "../components/Rapport/Rapport.vue";
 </script>
 
 <template>
@@ -10,11 +10,10 @@
         <TheMap />
       </div>
 
-      <!-- Section pour les graphiques (25% de largeur) -->
-      <div class="card">
-        <Rapport />
-      </div>
-
+    <!-- Section pour les graphiques (25% de largeur) -->
+    <div class="card">
+      <Rapport />
+    </div>
   </main>
 </template>
 
@@ -33,7 +32,7 @@ main {
   gap: 20px; /* Espacement entre la carte et les graphiques */
   width: 100%;
 }
-
+.cardMap
 /* Conteneur pour la carte */
 .map-container {
   border: 2px solid #ccc; /* Bordure grise */
