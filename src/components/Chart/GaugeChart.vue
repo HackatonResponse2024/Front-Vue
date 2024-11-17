@@ -93,6 +93,9 @@ export default {
                 name: props.title,
               },
             ],
+            // Animation properties for initial render
+            animationDuration: 10000, // Slow down the initial animation (10 seconds)
+            animationEasing: "cubicOut", // Smooth transition
           },
         ],
       };
@@ -112,6 +115,8 @@ export default {
                     value: newValue, // Update the gauge value
                   },
                 ],
+                animationDurationUpdate: 10000, // Slow down update animations (10 seconds)
+                animationEasingUpdate: "cubicOut", // Smooth transition
               },
             ],
           });

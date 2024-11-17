@@ -3,19 +3,25 @@
     <h1 class="h1">Rapport</h1>
 
     <div class="row">
-      <div class="col card">
-        <GaugeChart :title="'Auto Production'" :value="Math.round(rapport.autoProductionRate * 100 * 1000) / 1000" />
+      <div class="col card" @click="openModal">
+        <GaugeChart
+          :title="'Auto Production'"
+          :value="Math.round(rapport.autoProductionRate * 100 * 1000) / 1000"
+        />
       </div>
-      <div class="col card">
-        <GaugeChart :title="'Auto Consommation'" :value="Math.round(rapport.autoConsumationRate * 100 * 1000) / 1000" />
+      <div class="col card" @click="openModal">
+        <GaugeChart
+          :title="'Auto Consommation'"
+          :value="Math.round(rapport.autoConsumationRate * 100 * 1000) / 1000"
+        />
       </div>
-      <div class="col card">
+      <div class="col card" @click="openModal">
         <GaugeChart :title="'Puissance Max'" :value="1238" :unite="' W'" />
       </div>
     </div>
 
     <div class="col card">
-      <BarChart 
+      <BarChart
         :months="rapport.months"
         :valuable-production="rapport.valuableProduction"
         :surplus="rapport.surplus"
@@ -45,24 +51,39 @@ const props = defineProps({
       autoProductionRate: 0,
       months: [],
       valuableProduction: [],
-      surplus: []
-    })
-  }
+      surplus: [],
+    }),
+  },
 });
 
 const isModalVisible = ref(false);
 
 const charts = [
-  { component: GaugeChart, props: { title: "Auto Production", value: Math.round(props.rapport.autoProductionRate * 100 * 1000) / 1000 } },
-  { component: GaugeChart, props: { title: "Auto Consommation", value: Math.round(props.rapport.autoConsumationRate * 100 * 1000) / 1000 } },
-  { component: GaugeChart, props: { title: "Puissance Max", value: 1238, unite: " W", maxValue: 1200 } },
-  { 
-    component: BarChart, 
-    props: { 
+  {
+    component: GaugeChart,
+    props: {
+      title: "Auto Production",
+      value: Math.round(props.rapport.autoProductionRate * 100 * 1000) / 1000,
+    },
+  },
+  {
+    component: GaugeChart,
+    props: {
+      title: "Auto Consommation",
+      value: Math.round(props.rapport.autoConsumationRate * 100 * 1000) / 1000,
+    },
+  },
+  {
+    component: GaugeChart,
+    props: { title: "Puissance Max", value: 1238, unite: " W", maxValue: 1200 },
+  },
+  {
+    component: BarChart,
+    props: {
       months: props.rapport.months,
       valuableProduction: props.rapport.valuableProduction,
-      surplus: props.rapport.surplus
-    } 
+      surplus: props.rapport.surplus,
+    },
   },
 ];
 
