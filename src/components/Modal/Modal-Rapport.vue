@@ -155,6 +155,9 @@ const maxHeight = 200;
 
 const getProportionalHeight = (value, index) => {
   const maxValue = maxValues[index] || 100;
+  const percentage = (value / maxValue) * 100; // Pourcentage de la barre à remplir
+
+  // Remarque: Vous pouvez ajuster la logique ici si vous souhaitez un autre comportement.
   return (value / maxValue) * maxHeight;
 };
 
@@ -173,6 +176,7 @@ const emit = defineEmits(["update:isVisible"]);
 
 const closeModal = () => {
   emit("update:isVisible", false);
+  selectedBuilding.value = null; // Ajoute cette ligne pour réinitialiser le bâtiment sélectionné
 };
 </script>
 
@@ -234,9 +238,14 @@ const closeModal = () => {
 }
 
 .progress-bar {
-  background-color: #007bff;
+  background-image: linear-gradient(
+    to top,
+    red,
+    /* Rouge pour faible valeur */ yellow,
+    /* Jaune pour valeur intermédiaire */ green /* Vert pour haute valeur */
+  );
   border-radius: 0 0 8px 8px;
-  transition: height 1s ease-out;
+  transition: height 4s ease-out;
 }
 
 .text-container {
@@ -281,7 +290,7 @@ const closeModal = () => {
 }
 
 .infrastructure-list button:hover {
-  color: #0056b3;
+  color: #a3acb5;
 }
 
 .link-button {
