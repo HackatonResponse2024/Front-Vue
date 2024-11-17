@@ -1,20 +1,31 @@
 <script setup lang="ts">
-  import TheMap from "../components/Map/TheMap.vue";  
-  import Rapport from "../components/Rapport/Rapport.vue";
+import TheMap from "../components/Map/TheMap.vue";
+import Rapport from "../components/Rapport/Rapport.vue";
+import { useConsumationStore } from '@/stores/consumationStore';
+import { storeToRefs } from 'pinia';
+
+const consumationStore = useConsumationStore();
+const { sortedReports } = storeToRefs(consumationStore);
 </script>
 
 <template>
   <main>
-      <!-- Section pour la carte (75% de largeur) -->
-      <div class="card">
-        <TheMap />
-      </div>
+    <div class="card">
+      <TheMap />
+    </div>
 
-      <!-- Section pour les graphiques (25% de largeur) -->
-      <div class="card">
-        <Rapport />
+    <div class="card">
+      <div v-if="sortedReports.length === 0">
+        Cliquez sur la carte pour générer des rapports
       </div>
-
+      <div v-else>
+        <Rapport 
+          v-for="(report, index) in sortedReports" 
+          :key="index"
+          :rapport="report"
+        />
+      </div>
+    </div>
   </main>
 </template>
 
@@ -33,7 +44,7 @@ main {
   gap: 20px; /* Espacement entre la carte et les graphiques */
   width: 100%;
 }
-
+.cardMap
 /* Conteneur pour la carte */
 .map-container {
   border: 2px solid #ccc; /* Bordure grise */
