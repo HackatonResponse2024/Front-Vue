@@ -94,7 +94,7 @@ export default {
               },
             ],
             // Animation properties for initial render
-            animationDuration: 10000, // Slow down the initial animation (10 seconds)
+            animationDuration: 3000, // Slow down the initial animation (10 seconds)
             animationEasing: "cubicOut", // Smooth transition
           },
         ],
