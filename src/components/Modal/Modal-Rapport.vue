@@ -202,6 +202,8 @@ const closeModal = () => {
   width: 95%;
   max-height: 95%;
   overflow-y: auto;
+  /* Adaptation pour les petits écrans */
+  box-sizing: border-box;
 }
 
 .slider-container {
@@ -210,6 +212,8 @@ const closeModal = () => {
   gap: 20px;
   margin: 20px 0;
   justify-content: center;
+  overflow-x: auto; /* Permet de faire défiler horizontalement sur mobile */
+  padding: 10px;
 }
 
 .slider-item {
@@ -218,6 +222,8 @@ const closeModal = () => {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  min-width: 150px; /* Réduire la taille des items sur mobile */
+  flex-shrink: 0;
 }
 
 .chart-data {
@@ -227,7 +233,7 @@ const closeModal = () => {
 }
 
 .progress-container {
-  width: 20px;
+  width: 30px;
   height: 200px;
   background-color: #e0e0e0;
   border-radius: 8px;
@@ -238,12 +244,7 @@ const closeModal = () => {
 }
 
 .progress-bar {
-  background-image: linear-gradient(
-    to top,
-    red,
-    /* Rouge pour faible valeur */ yellow,
-    /* Jaune pour valeur intermédiaire */ green /* Vert pour haute valeur */
-  );
+  background-image: linear-gradient(to top, red, yellow, green);
   border-radius: 0 0 8px 8px;
   transition: height 4s ease-out;
 }
@@ -325,7 +326,6 @@ button:hover {
   background-color: #0056b3;
 }
 
-/* Flèche pour agrandir la section */
 .expand-button {
   margin-top: 15px;
   text-align: center;
@@ -336,5 +336,51 @@ button:hover {
 
 .expand-button:hover {
   color: #0056b3;
+}
+
+/* Media Queries pour les petits écrans */
+@media (max-width: 768px) {
+  .slider-container {
+    flex-direction: column; /* Changer la direction du slider en colonne sur mobile */
+    gap: 10px;
+  }
+
+  .modal {
+    width: 90%; /* Réduire la taille du modal sur mobile */
+    padding: 15px;
+  }
+
+  .slider-item {
+    min-width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .chart-data {
+    width: 100%;
+    text-align: center;
+  }
+
+  .progress-container {
+    width: 40px;
+    height: 150px; /* Ajuster la taille des barres sur mobile */
+  }
+
+  .text-container p {
+    font-size: 14px; /* Réduire la taille du texte sur mobile */
+  }
+
+  .text-container ul {
+    padding-left: 10px;
+  }
+
+  button {
+    width: 100%; /* Le bouton occupe toute la largeur sur mobile */
+    padding: 15px 20px;
+  }
+
+  .expand-button {
+    font-size: 18px;
+  }
 }
 </style>
